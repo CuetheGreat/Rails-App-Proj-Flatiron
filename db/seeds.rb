@@ -25,16 +25,16 @@ end
  'Emelumin Kelmaer',
  'Niktelar Krisgeiros',
  'Nigenar Phiric'].each_with_index do |char, index|
-  chara = Character.create(name: char, user: User.find(index + 1), party: Party.find(1), race: Race.find(index + 1),
-                           job: Job.find(index + 1))
+  Character.create(name: char, user: User.find(index + 1), party: Party.find(1), race: Race.find(index + 1),
+                   job: Job.find(index + 1))
 end
 ['Arntar Ravayra',
  'Anlis Vaynore',
  'Urlan Genthana',
  'Elfinas Gretoris',
  'Fulano Phigied'].each_with_index do |char, index|
-   chara = Character.create(name: char, user: User.find(index + 1), party: Party.find(2), race: Race.find(index + 1),
-                            job: Job.find(index + 1))
+   Character.create(name: char, user: User.find(index + 1), party: Party.find(2), race: Race.find(index + 1),
+                    job: Job.find(index + 1))
  end
 
 Character.all.each do |chara|
