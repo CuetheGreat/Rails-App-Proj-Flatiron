@@ -1,0 +1,14 @@
+<h1>Sign In</h1>
+<p>Sign in with username and password below</p>
+<%= form_for @user, url: signin_path, method: :post do |f|%>
+  <%= flash[:notice] if flash[:notice]%>
+  <div class='field'>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+  <div class='field'>
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+  <%= f.submit 'Sign In'%>
+<% end %>
