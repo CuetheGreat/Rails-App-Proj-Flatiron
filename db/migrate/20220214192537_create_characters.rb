@@ -4,6 +4,8 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.string :name
       t.integer :user_id
       t.integer :party_id
+      t.integer :race_id
+      t.integer :job_id
 
       t.timestamps
     end

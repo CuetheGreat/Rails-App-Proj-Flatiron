@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_14_184439) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_14_202607) do
+  create_table "abilities", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.integer "character_id"
+    t.integer "modifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "party_id"
+    t.integer "race_id"
+    t.integer "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "name"
+    t.integer "bonus_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parties", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string "name"
+    t.integer "bonus_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
