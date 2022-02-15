@@ -18,7 +18,7 @@ end
   Job.create(name:)
 end
 
-%w['Supreme Kings','Underhill Dwellers'].each { |char| Party.create(name: char) }
+['Supreme Kings', 'Underhill Dwellers'].each { |char| Party.create(name: char) }
 
 ['Ulben Balro',
  'Ricis Ravacyne',

@@ -1,0 +1,8 @@
+<h1>User Index</h1>
+<% @users.each do |user|%>
+  <div>
+    <%= render partial: 'user', locals: {user: user, parties: nil, characters: nil} %>
+    <%= link_to "Go to #{user.name}'s page", user_path(user) %>
+  </div>
+  <br>
+<% end %>

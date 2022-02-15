@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show]
+  before_action :require_login, only: %i[show edit]
   def index
     @users = User.all
   end
@@ -12,18 +12,33 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: 'User was successfullty created.'
+      redirect_to @user, notice: "#{@user.name} was successfullty created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
   end
 
   def edit
     @user = User.find_by(id: params[:id])
   end
 
-  def show
+  def update
     @user = User.find_by(id: params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "#{@user.name} successfuly updated"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   private

@@ -1,0 +1,23 @@
+<div>
+  <strong>Username: </strong><%= user.username %> <br>
+  <strong>Characters: </strong> Has <%= pluralize(user.characters.count, 'Character') %> <br>
+  <% if characters %>
+    <div>
+      <ul>
+        <% characters.each do |character| %>
+          <li><%= link_to character.name, '/' %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <strong>Parties:</strong> A member of <%= pluralize(user.parties.count, 'Party') %>
+  <% if parties %>
+    <div>
+      <ul>
+        <% parties.each do |party| %>
+          <li><%= link_to party.name, '/' %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

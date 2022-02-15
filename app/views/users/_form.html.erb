@@ -1,24 +1,31 @@
-<%= form_for user do |f| %>
-  <ul>
-    <% user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-  <div class="field">
-    <%= f.label :name %>
+<%= form_for object do |f| %>
+  <% if f.object.errors.present?%>
+    <div style="color: red">
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :username %>
+  <div>
+    <%= f.label :username %><br>
     <%= f.text_field :username %>
   </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
+  <% if !@user.persisted? %>
+    <div>
+      <%= f.label :password%><br>
+      <%= f.text_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation %><br>
+      <%= f.text_field :password_confirmation  %>
+    </div>
+  <% end %>
+  <div>
+    <%= f.submit %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation  %>
-  </div>
-  <%= f.submit %>
 <% end %>
