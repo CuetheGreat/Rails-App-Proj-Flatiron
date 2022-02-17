@@ -1,5 +1,6 @@
 class CharactersController < ApplicationController
   before_action :require_login
+  before_action :character_set?, only: %i[show edit]
   def index
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
@@ -16,17 +17,21 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
     @character.build_nested
-    if params[:user_id]
-      user = User.find_by(id: params[:id])
-      @character.user = user
-    end
+    user = User.find_by(id: params[:id]) if params[:user_id]
+    redirect_to user_path(current_user) if user.nil?
+    @character.user = user
   end
 
   def create
     @character = Character.new(character_params)
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
-      @character.user = user
+      if user.nil?
+        flash[:notice] = 'User could not be found.'
+        redirect_to users_path
+      else
+        @character.user = user
+      end
     else
       @character.user = current_user
     end
@@ -40,7 +45,12 @@ class CharactersController < ApplicationController
   def show
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
-      @character = Character.find_by(id: params[:id], user:)
+      if user.nil?
+        flash[:notice] = 'User could not be found.'
+        redirect_to users_path
+      else
+        @character = Character.find_by(id: params[:id], user:)
+      end
     else
       @character = Character.find_by(id: params[:id])
     end
@@ -69,5 +79,13 @@ class CharactersController < ApplicationController
 
   def character_params
     params.require(:character).permit(:name, :race_id, :job_id, :party_id, abilities_attributes: %i[id value name])
+  end
+
+  def character_set?
+    @character = Character.find_by(id: params[:id])
+    if @character.nil?
+      flash[:notice] = "Character with the ID:#{params[:id]} could not be found."
+      redirect_to characters_path
+    end
   end
 end

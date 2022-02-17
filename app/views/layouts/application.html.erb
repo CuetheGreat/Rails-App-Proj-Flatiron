@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
+    <nav>
+      <% if logged_in? %>
+        <%= link_to 'Profile', user_path(current_user) %>
+        <%= link_to 'Characters', characters_path %>
+        <%= button_to "Sign Out",signout_path, method: :post %>
+      <% else %>
+        <%= link_to "Sign In",signin_path %>
+        <%= link_to "Sign Up",new_user_path %>
+      <% end %>
+    </nav>
+    <%= flash[:notice] if flash[:notice] %>
     <%= yield %>
   </body>
 </html>

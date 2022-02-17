@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[show edit]
+  before_action :require_login, except: %i[index new]
+  before_action :set_user?, only: %i[show edit]
   def index
     @users = User.all
   end
@@ -18,18 +19,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find_by(id: params[:id])
-  end
+  def show; end
 
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
+  def edit; end
 
   def update
     @user = User.find_by(id: params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "#{@user.name} successfuly updated"
+      redirect_to user_path(@user), notice: "#{@user.name} successfuly updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,6 +34,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
+    flash[:notice] = "User #{@user.name} could not be found. Redirected to your homepage."
     @user.destroy
     redirect_to users_path
   end
@@ -45,5 +43,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :password, :password_confirmation)
+  end
+
+  def set_user?
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      flash[:notice] = 'User could not be found. Redirected to your homepage.'
+      redirect_to user_path(current_user)
+    end
   end
 end
