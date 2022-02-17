@@ -22,7 +22,7 @@
   <div>
     <strong> <%= character.persisted? ? 'Change' : 'Add' %> Job:</strong><br>
     <%= f.label :job %>
-    <%= f.collection_select  :job_id, Job.all, :id, :name %>
+    <%= f.collection_select  :job_id, Job.order('name'), :id, :name %>
   </div>
   <br>
   <div>

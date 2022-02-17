@@ -1,7 +1,10 @@
 <h1><%= @character.name %>'s Info</h1>
 <%= render 'abilities', character: @character %>
+<br>
 <%= render 'character', character: @character %>
+<br>
 <%= render 'party', character: @character %>
+<br>
 <div>
   <% if @character.user == current_user %>
     <%= link_to "Edit #{@character.name}", edit_user_character_path(@character.id) %>

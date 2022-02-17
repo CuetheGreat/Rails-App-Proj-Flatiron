@@ -2,16 +2,19 @@
   <strong>Abilities:</strong> <br>
   <table>
     <tr>
+      <th> </th>
       <% character.abilities.each do |ability| %>
         <th><%= ability.name %></th>
       <% end %>
     </tr>
     <tr>
+      <th><strong>Score:</strong></th>
       <% character.abilities.each do |ability| %>
         <td><%= ability.value %></td>
       <% end %>
     </tr>
     <tr>
+      <th><strong>Modifier:</strong></th>
       <% character.abilities.each do |ability| %>
         <td><%= ability.modifier %></td>
       <% end %>

@@ -16,7 +16,6 @@ class CharactersController < ApplicationController
   def new
     @character = Character.new
     @character.build_nested
-
     if params[:user_id]
       user = User.find_by(id: params[:id])
       @character.user = user
@@ -25,7 +24,6 @@ class CharactersController < ApplicationController
 
   def create
     @character = Character.new(character_params)
-    binding.pry
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
       @character.user = user

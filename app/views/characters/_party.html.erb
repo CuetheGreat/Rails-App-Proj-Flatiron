@@ -1,6 +1,8 @@
 <div>
   <strong>Party Members:</strong> <br>
   <% @character.party.members.each do |member| %>
-    <%= member.name %> <br>
+    <% if member != @character %>
+      <%= link_to member.name, character_path(member) %> <br>
+    <% end %>
   <% end %>
 </div>
