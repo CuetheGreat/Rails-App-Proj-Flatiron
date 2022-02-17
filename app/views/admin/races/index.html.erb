@@ -1,0 +1,8 @@
+<h1>All Races</h1>
+<% @races.each do |race|%>
+  <div>
+    <%= link_to race.name.capitalize, admin_race_path(race) %> <br>
+    Has <%= pluralize(race.characters.count, 'Characters')%> with this race.
+  </div>
+  <br>
+<% end %>

@@ -1,0 +1,13 @@
+<%= form_for [:admin, job] do |f|%>
+  <% if f.object.errors.present?%>
+    <div style="color: red">
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+  <%= f.label 'Name:'%><br>
+  <%= f.text_field :name%> <br>
+  <%= f.submit%>
+<% end %>

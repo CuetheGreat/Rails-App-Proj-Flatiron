@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :characters, only: %i[show index edit new]
   end
-  resources :characters
+  resources :characters, only: %i[show index]
+
+  namespace :admin do
+    resources :jobs
+    resources :races
+  end
+
   # Defines the root path route ("/")
   root 'welcome#home'
 end

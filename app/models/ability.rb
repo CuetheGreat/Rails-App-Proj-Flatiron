@@ -3,7 +3,7 @@ class Ability < ApplicationRecord
   belongs_to :character
 
   # - Validations
-  validates :name, :value, presence: true
+  validates :name, presence: true
 
   # - Actions
   before_save :set_modifier

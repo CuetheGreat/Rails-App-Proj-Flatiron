@@ -8,7 +8,7 @@ class Character < ApplicationRecord
 
   accepts_nested_attributes_for :abilities
   # - Validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   def build_nested
     %w[Strength Dexterity Constitution Wisdom Charisma Inteligence].each do |i|

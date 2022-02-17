@@ -1,0 +1,7 @@
+<% object.characters.each do |c|%>
+  <%= link_to c.name, user_character_path(c.user, c) %> <br>
+<% end %>
+<% unless object.characters.count == 0 %>
+  <br>
+  <%= link_to "Edit #{object.class.to_s}" , edit_admin_job_path(object)%>
+<% end %>

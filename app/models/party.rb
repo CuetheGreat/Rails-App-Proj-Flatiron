@@ -3,8 +3,7 @@ class Party < ApplicationRecord
   has_many :members, class_name: 'Character'
 
   # - Validations
-  validates :name, presence: true
-
+  validates :name, presence: true, uniqueness: true
   # - Public Methods
   def member_count
     members.length
