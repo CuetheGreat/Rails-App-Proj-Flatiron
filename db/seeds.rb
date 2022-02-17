@@ -10,12 +10,12 @@
   User.create(name: user, username: "user#{user.downcase}", password: 'password')
 end
 
-%w[Aarokocra Ansimar Bugbear Dragonborn Dwarf Elf Firbolg Genasi Gnome Goblin Goliath].each do |name|
-  Race.create(name:)
+%w[Aarokocra Ansimar Bugbear Dragonborn Dwarf Elf Firbolg Genasi Gnome Goblin Goliath].each do |kind|
+  Race.create(name: kind)
 end
 
-%w[BARBARIAN BARD CLERIC DRUID FIGHTER MONK PALADIN RANGER ROGUE SORCERER WARLOCK WIZARD].each do |name|
-  Job.create(name:)
+%w[BARBARIAN BARD CLERIC DRUID FIGHTER MONK PALADIN RANGER ROGUE SORCERER WARLOCK WIZARD].each do |job|
+  Job.create(name: job)
 end
 
 ['Supreme Kings', 'Underhill Dwellers'].each { |char| Party.create(name: char) }

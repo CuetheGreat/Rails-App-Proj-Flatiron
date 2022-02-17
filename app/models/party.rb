@@ -1,6 +1,6 @@
 class Party < ApplicationRecord
   # - Association
-  has_many :members, class_name: :characters
+  has_many :members, class_name: 'Character'
 
   # - Validations
   validates :name, presence: true

@@ -1,0 +1,48 @@
+<%= form_for character do |f| %>
+  <% if f.object.errors.present?%>
+    <div style="color: red">
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+  <div>
+    <strong> <%= character.persisted? ? 'Change' : 'Add' %> Name:</strong><br>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <br>
+  <div>
+    <strong> <%= character.persisted? ? 'Change' : 'Add' %> Race:</strong><br>
+    <%= f.label :race%>
+    <%= f.collection_select :race_id, Race.order('name') ,:id, :name %>
+  </div>
+  <br>
+  <div>
+    <strong> <%= character.persisted? ? 'Change' : 'Add' %> Job:</strong><br>
+    <%= f.label :job %>
+    <%= f.collection_select  :job_id, Job.all, :id, :name %>
+  </div>
+  <br>
+  <div>
+    <strong> <%= character.persisted? ? 'Change' : 'Add to' %> Party:</strong><br>
+    <%= f.label :party %>
+    <%= f.collection_select  :party_id, Party.all, :id, :name %>
+  </div>
+  <br>
+  <strong><%= character.persisted? ? 'Change' : 'Add' %> Ability Scores:</strong> <br>
+  <%= f.fields_for :abilities do |field| %>
+    <div>
+      <%= field.label :name %>
+      <%= field.hidden_field :name%>
+      <%= field.text_field :name, disabled: true %> <br>
+      <%= field.label :value %>
+      <%= field.number_field :value %>
+    </div>
+    <br>
+  <% end %>
+  <div>
+    <%= f.submit%>
+  </div>
+<% end %>

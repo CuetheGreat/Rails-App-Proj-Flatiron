@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_14_202607) do
 
   create_table "races", force: :cascade do |t|
     t.string "name"
-    t.integer "bonus_id"
+    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

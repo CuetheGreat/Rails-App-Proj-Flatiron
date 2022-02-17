@@ -1,0 +1,20 @@
+<div>
+  <strong>Abilities:</strong> <br>
+  <table>
+    <tr>
+      <% character.abilities.each do |ability| %>
+        <th><%= ability.name %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <% character.abilities.each do |ability| %>
+        <td><%= ability.value %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% character.abilities.each do |ability| %>
+        <td><%= ability.modifier %></td>
+      <% end %>
+    </tr>
+  </table>
+</div>

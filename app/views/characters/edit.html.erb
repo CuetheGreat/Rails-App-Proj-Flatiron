@@ -1,2 +1,3 @@
-<h1>Characters#edit</h1>
-<p>Find me in app/views/characters/edit.html.erb</p>
+<h1>Edit <%= @character.name %></h1>
+<p>Edit character below:</p>
+<%= render 'form', character: @character %>

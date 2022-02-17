@@ -3,8 +3,11 @@ class CharactersController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
-      redirect_to user_path(current_user) if @user.nil?
-      @characters = Character.where(user_id: @user.id)
+      if @user.nil?
+        redirect_to user_path(current_user)
+      else
+        @characters = Character.where(user_id: @user.id)
+      end
     else
       @characters = Character.all
     end
@@ -12,12 +15,22 @@ class CharactersController < ApplicationController
 
   def new
     @character = Character.new
+    @character.build_nested
+
+    if params[:user_id]
+      user = User.find_by(id: params[:id])
+      @character.user = user
+    end
   end
 
   def create
+    @character = Character.new(character_params)
+    binding.pry
     if params[:user_id]
-      @user = User.find_by(id: params[:user_id])
-      @character = Character.new(character_params)
+      user = User.find_by(id: params[:user_id])
+      @character.user = user
+    else
+      @character.user = current_user
     end
     if @character.save
       redirect_to @character, notice: "#{@character.name} has been successfully created."
@@ -27,7 +40,12 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character = Character.find_by(id: params[:id])
+    if params[:user_id]
+      user = User.find_by(id: params[:user_id])
+      @character = Character.find_by(id: params[:id], user:)
+    else
+      @character = Character.find_by(id: params[:id])
+    end
   end
 
   def edit
@@ -47,5 +65,11 @@ class CharactersController < ApplicationController
     @character = Character.find_by(id: params[:id])
     @character.destroy
     redirect_to characters_path
+  end
+
+  private
+
+  def character_params
+    params.require(:character).permit(:name, :race_id, :job_id, :party_id, abilities_attributes: %i[id value name])
   end
 end

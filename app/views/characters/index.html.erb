@@ -1,5 +1,11 @@
-<h1>Characters#index</h1>
-<p>Find me in app/views/characters/index.html.erb</p>
+<h1><%= @user ? "#{@user.name}'s " : 'All '%>Chracters</h1>
+<br>
 <% @characters.each do |character|%>
-  <%= character.name %> <br>
+  <strong>Name: </strong><%= link_to character.name , user_character_path(character.user,character) %>
+  <%= render 'character', character: character %>
+  <br>
+  <br>
+<% end %>
+<% if current_user.id == @user.id%>
+  <%= link_to "Create New Character ", new_user_character_path %>
 <% end %>
