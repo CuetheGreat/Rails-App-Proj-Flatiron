@@ -1,0 +1,8 @@
+<div>
+  <%= f.label :name %>
+  <%= f.collection_select :name, Ability.distinct.pluck(:name), :to_s, :to_s, {prompt: 'Select Ability'}%>
+</div>
+<div>
+  <%= f.label :value %>
+  <%= f.number_field :value %>
+</div>

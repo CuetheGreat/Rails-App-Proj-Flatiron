@@ -10,8 +10,49 @@
   User.create(name: user, username: "user#{user.downcase}", password: 'password')
 end
 
-%w[Aarokocra Ansimar Bugbear Dragonborn Dwarf Elf Firbolg Genasi Gnome Goblin Goliath].each do |kind|
-  Race.create(name: kind)
+%w[Aarokocra Aasimar Bugbear Dragonborn Dwarf].each do |kind|
+  race = Race.create(name: kind)
+  case kind
+  when 'Aarokocra'
+    Benefit.create(name: 'Dexterity', value: 2, race_id: race.id)
+    Benefit.create(name: 'Wisdom', value: 1, race_id: race.id)
+  when 'Aasimar'
+    Benefit.create(name: 'Wisdom', value: 1, race_id: race.id)
+    Benefit.create(name: 'Charisma', value: 2, race_id: race.id)
+  when 'Bugbear'
+    Benefit.create(name: 'Dexterity', value: 1, race_id: race.id)
+    Benefit.create(name: 'Strength', value: 2, race_id: race.id)
+  when 'Dragonborn'
+    Benefit.create(name: 'Strength', value: 2, race_id: race.id)
+    Benefit.create(name: 'Charisma', value: 1, race_id: race.id)
+  when 'Dwarf'
+    Benefit.create(name: 'Constitution', value: 2, race_id: race.id)
+    Benefit.create(name: 'Wisdom', value: 1, race_id: race.id)
+  end
+end
+
+%w[Elf Firbolg Genasi Gnome Goblin Goliath].each do |kind|
+  race = Race.create(name: kind)
+  case kind
+  when 'Elf'
+    Benefit.create(name: 'Dexterity', value: 2, race_id: race.id)
+    Benefit.create(name: 'Intelligence', value: 1, race_id: race.id)
+  when 'Firbolg'
+    Benefit.create(name: 'Strength', value: 1, race_id: race.id)
+    Benefit.create(name: 'Wisdom', value: 2, race_id: race.id)
+  when 'Genasi'
+    Benefit.create(name: 'Constitution', value: 2, race_id: race.id)
+    Benefit.create(name: 'Intelligence', value: 1, race_id: race.id)
+  when 'Gnome'
+    Benefit.create(name: 'Dexterity', value: 1, race_id: race.id)
+    Benefit.create(name: 'Intelligence', value: 2, race_id: race.id)
+  when 'Goblin'
+    Benefit.create(name: 'Dexterity', value: 2, race_id: race.id)
+    Benefit.create(name: 'Constitution', value: 1, race_id: race.id)
+  when 'Goliath'
+    Benefit.create(name: 'Strength', value: 2, race_id: race.id)
+    Benefit.create(name: 'Constitution', value: 1, race_id: race.id)
+  end
 end
 
 %w[BARBARIAN BARD CLERIC DRUID FIGHTER MONK PALADIN RANGER ROGUE SORCERER WARLOCK WIZARD].each do |job|
@@ -38,7 +79,7 @@ end
  end
 
 Character.all.each do |chara|
-  %w[Strength Dexterity Constitution Wisdom Charisma Inteligence].each do |ability|
+  %w[Strength Dexterity Constitution Wisdom Charisma Intelligence].each do |ability|
     ab = Ability.create(name: ability, value: rand(8..18), character: chara)
     puts ab.errors.full_messages
   end

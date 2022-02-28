@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_17_163544) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_18_202538) do
   create_table "abilities", force: :cascade do |t|
     t.string "name"
     t.integer "value"
     t.integer "character_id"
     t.integer "modifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "benefits", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.integer "race_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_17_163544) do
 
   create_table "races", force: :cascade do |t|
     t.string "name"
-    t.integer "bonus_id"
+    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

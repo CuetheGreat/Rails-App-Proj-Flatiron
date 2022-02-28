@@ -7,7 +7,15 @@
       <% end %>
     </div>
   <% end %>
-  <%= f.label 'Name:'%><br>
-  <%= f.text_field :name%> <br>
+  <div>
+    <%= f.label 'Name:'%><br>
+    <%= f.text_field :name%> <br>
+  </div>
+  <div>
+    <h2>Racial Bonus</h2>
+    <%= f.fields_for :benefits do |field|%>
+      <%= render 'benefit', f: field %>
+    <% end %>
+  </div>
   <%= f.submit%>
 <% end %>

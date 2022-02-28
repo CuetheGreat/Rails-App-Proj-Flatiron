@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   before_action :require_login
-  before_action :character_set?, only: %i[show edit]
+
   def index
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
@@ -26,12 +26,8 @@ class CharactersController < ApplicationController
     @character = Character.new(character_params)
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
-      if user.nil?
-        flash[:notice] = 'User could not be found.'
-        redirect_to users_path
-      else
-        @character.user = user
-      end
+      redirect_to users_path, notice: 'User could not be found.' if user.nil?
+      @character.user = user
     else
       @character.user = current_user
     end
@@ -45,19 +41,21 @@ class CharactersController < ApplicationController
   def show
     if params[:user_id]
       user = User.find_by(id: params[:user_id])
-      if user.nil?
-        flash[:notice] = 'User could not be found.'
-        redirect_to users_path
-      else
-        @character = Character.find_by(id: params[:id], user:)
-      end
+      redirect_to users_path, notice: 'User could not be found.' if user.nil?
+      @character = Character.find_by(id: params[:id], user_id: user.id)
     else
       @character = Character.find_by(id: params[:id])
     end
   end
 
   def edit
-    @character = Character.find_by(id: params[:id])
+    if params[:user_id]
+      user = User.find_by(id: params[:user_id])
+      redirect_to users_path, notice: 'User could not be found.' if user.nil?
+      @character = Character.find_by(id: params[:id], user_id: user.id)
+    else
+      @character = Character.find_by(id: params[:id])
+    end
   end
 
   def update
@@ -79,13 +77,5 @@ class CharactersController < ApplicationController
 
   def character_params
     params.require(:character).permit(:name, :race_id, :job_id, :party_id, abilities_attributes: %i[id value name])
-  end
-
-  def character_set?
-    @character = Character.find_by(id: params[:id])
-    if @character.nil?
-      flash[:notice] = "Character with the ID:#{params[:id]} could not be found."
-      redirect_to characters_path
-    end
   end
 end

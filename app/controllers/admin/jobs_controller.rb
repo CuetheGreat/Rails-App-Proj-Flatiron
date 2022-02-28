@@ -36,6 +36,15 @@ module Admin
       end
     end
 
+    def delete
+      @job = Job.find_by(id: params[:id])
+      binding.pry
+      flash[:notice] = 'Job successfully destroyed.'
+      @job.destroy
+
+      reditect_to admin_jobs_path
+    end
+
     private
 
     def job_params

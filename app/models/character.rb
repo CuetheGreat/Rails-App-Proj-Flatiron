@@ -5,6 +5,7 @@ class Character < ApplicationRecord
   belongs_to :race
   belongs_to :job
   has_many :abilities
+  has_many :benefits, through: :race
 
   accepts_nested_attributes_for :abilities
   # - Validations

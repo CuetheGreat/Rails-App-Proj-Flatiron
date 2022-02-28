@@ -9,6 +9,6 @@
 <div>
   <% if @character.user == current_user %>
     <%= link_to "Edit #{@character.name}", edit_user_character_path(@character.id) %>
-    <%= button_to 'Delete Character', character_path, method: :post %>
+    <%= button_to 'Delete Character', character_path, method: :delete %>
   <% end %>
 </div>

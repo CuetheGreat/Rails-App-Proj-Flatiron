@@ -1,0 +1,21 @@
+<div>
+  <% if object.class == Race%>
+    <h3>Racial Bonuses</h3>
+    <% object.benefits.each do |benefit| %>
+      <%= benefit.to_text %> <br>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <% unless object.characters.empty?%>
+    <h3>Characters of this <%= object.class.to_s %>:</h3>
+    <% object.characters.each do |c|%>
+      <%= link_to c.name, user_character_path(c.user, c) %> <br>
+    <% end %>
+  <%end%>
+</div>
+<br>
+<br>
+<%= link_to "Edit #{object.name}"  , object.class.to_s == 'Job' ? edit_admin_job_path(object) : edit_admin_race_path(object)%>
+|
+<%= button_to "Delete #{object.name}", object.class.to_s == 'Job' ? admin_job_path(object) : admin_race_path(object), data: {confirm: 'Are you sure?'}, method: :delete %>

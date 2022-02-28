@@ -2,7 +2,8 @@
 <% @jobs.each do |job|%>
   <div>
     <%= link_to job.name.capitalize, admin_job_path(job) %>
-    Has <%= pluralize( jobs.characters.count, 'Character') %> with this Job
+    <br>
+    Has <%= pluralize( job.characters.count, 'Character') %> with this Job
   </div>
   <br>
 <% end %>

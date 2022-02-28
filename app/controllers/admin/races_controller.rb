@@ -9,6 +9,9 @@ module Admin
 
     def new
       @race = Race.new
+      2.times do
+        @race.benefits.build
+      end
     end
 
     def create
@@ -18,6 +21,9 @@ module Admin
         flash[:notice] = 'Race created successfully.'
         redirect_to admin_race_path(@race)
       else
+        2.times do
+          @race.benefits.build
+        end
         render :new, status: :unprocessable_entity
       end
     end
@@ -39,7 +45,7 @@ module Admin
     private
 
     def race_params
-      params.require(:race).permit(:name)
+      params.require(:race).permit(:name, benefits_attributes: [])
     end
 
     def set_race
