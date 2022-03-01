@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def admin?
     if logged_in?
-      redirect_to user_path(current_user) unless current_user.admin
+      (redirect_to user_path(current_user), notice: 'You are not an admin.') unless current_user.admin
     else
       flash[:notice] = 'Please sign in '
       redirect_to root_path
