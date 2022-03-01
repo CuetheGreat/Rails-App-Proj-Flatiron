@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :characters, only: %i[show index edit new]
   end
-  resources :characters, only: %i[show index]
+  resources :characters, only: %i[new create show index]
 
   namespace :admin do
     resources :jobs

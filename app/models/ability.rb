@@ -4,13 +4,4 @@ class Ability < ApplicationRecord
 
   # - Validations
   validates :name, presence: true
-
-  # - Actions
-  before_save :set_modifier
-
-  private
-
-  def set_modifier
-    self.modifier = ((value - 10) / 2).floor
-  end
 end

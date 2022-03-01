@@ -16,31 +16,19 @@
     <tr>
       <th><strong>Race Bonus:</strong></th>
       <% character.abilities.each do |ability|%>
-        <% if character.benefits[0].name == ability.name %>
-          <td><%= character.benefits[0].value %></td>
-        <% elsif character.benefits[1].name == ability.name %>
-          <td><%= character.benefits[1].value %></td>
-        <% else %>
-          <td> - </td>
-        <% end %>
+        <td><%= character.get_racial_bonus(ability)%></td>
       <% end %>
     </tr>
     <tr>
       <th><strong>Total:</strong></th>
       <% character.abilities.each do |ability| %>
-        <% if character.benefits[0].name == ability.name %>
-          <td><%= ability.value + character.benefits[0].value %></td>
-        <% elsif character.benefits[1].name == ability.name %>
-          <td><%=  ability.value + character.benefits[1].value %></td>
-        <% else %>
-          <td> <%= ability.value %> </td>
-        <% end %>
+        <td><%= character.ability_with_modifier(ability) %></td>
       <% end %>
     </tr>
     <tr>
       <th><strong>Modifier:</strong></th>
       <% character.abilities.each do |ability| %>
-        <td><%= ability.modifier %></td>
+        <td><%= character.ability_modifier(ability) %></td>
       <% end %>
     </tr>
   </table>
