@@ -7,10 +7,13 @@ class Character < ApplicationRecord
   has_many :abilities
   has_many :benefits, through: :race
 
+  # - nested Attributes
   accepts_nested_attributes_for :abilities
+
   # - Validations
   validates :name, presence: true, uniqueness: true
 
+  # - Instance Methods
   def build_nested
     %w[Strength Dexterity Constitution Wisdom Charisma Inteligence].each do |i|
       abilities.build(name: i, value: 10)

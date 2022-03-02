@@ -9,6 +9,4 @@ class User < ApplicationRecord
   # - Associations
   has_many :characters
   has_many :parties, through: :characters
-
-  # - Instance Methods
 end

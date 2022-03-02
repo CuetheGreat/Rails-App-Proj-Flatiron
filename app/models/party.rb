@@ -4,10 +4,9 @@ class Party < ApplicationRecord
 
   # - Validations
   validates :name, presence: true, uniqueness: true
-  # - Public Methods
+
+  # - Intance Methods
   def member_count
     members.length
   end
-
-  # - Private Methods
 end
