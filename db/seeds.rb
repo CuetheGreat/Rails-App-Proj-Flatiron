@@ -67,7 +67,7 @@ end
  'Niktelar Krisgeiros',
  'Nigenar Phiric'].each_with_index do |char, index|
   Character.create(name: char, user: User.find(index + 1), party: Party.find(1), race: Race.find(index + 1),
-                   job: Job.find(index + 1))
+                   job: Job.find(index + 1), alive: index.even? ? true : false)
 end
 ['Arntar Ravayra',
  'Anlis Vaynore',
@@ -75,7 +75,7 @@ end
  'Elfinas Gretoris',
  'Fulano Phigied'].each_with_index do |char, index|
    Character.create(name: char, user: User.find(index + 1), party: Party.find(2), race: Race.find(index + 1),
-                    job: Job.find(index + 1))
+                    job: Job.find(index + 1), alive: index.odd? ? true : false)
  end
 
 Character.all.each do |chara|

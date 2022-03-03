@@ -13,6 +13,10 @@ class Character < ApplicationRecord
   # - Validations
   validates :name, presence: true, uniqueness: true
 
+  # - scope
+  scope :is_alive, -> { where(alive: true) }
+  scope :is_dead, -> { where(alive: false) }
+
   # - Instance Methods
   def build_nested
     %w[Strength Dexterity Constitution Wisdom Charisma Inteligence].each do |i|

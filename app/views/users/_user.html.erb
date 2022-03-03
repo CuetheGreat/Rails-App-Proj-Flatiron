@@ -3,8 +3,15 @@
   <strong><%= link_to 'Characters:', user_characters_path(user) %> </strong> Has <%= pluralize(user.characters.count, 'Character') %> <br>
   <% if characters %>
     <div>
+      Alive:
       <ul>
-        <% characters.each do |character| %>
+        <% characters.is_alive.each do |character| %>
+          <li><%= link_to character.name, user_character_path(user, character) %></li>
+        <% end %>
+      </ul>
+      Dead:
+      <ul>
+        <% characters.is_dead.each do |character| %>
           <li><%= link_to character.name, user_character_path(user, character) %></li>
         <% end %>
       </ul>
