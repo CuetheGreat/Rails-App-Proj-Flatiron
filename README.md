@@ -30,22 +30,22 @@ Your models must:
 
 - [x]  You must include and make use of a nested resource with the appropriate RESTful URLs.
 
-- []   You must include a nested new route with form that relates to the parent resource
+- [x]   You must include a nested new route with form that relates to the parent resource
 
-- > [x]  • You must include a nested index or show route
+- > You must include a nested index or show route
 
 - [x]  Your forms should correctly display validation errors.
 
-- > [x]  a. Your fields should be enclosed within a fields_with_errors class
+  >  a. Your fields should be enclosed within a fields_with_errors class
 
-- > [x]  b. Error messages describing the validation failures must be present within the view.
+  >  b. Error messages describing the validation failures must be present within the view.
 
 - [x]  Your application must be, within reason, a DRY (Do-Not-Repeat-Yourself) rails app.
 
-- > [x]  Logic present in your controllers should be encapsulated as methods in your models.
+- >   Logic present in your controllers should be encapsulated as methods in your models.
 
-- > [x]  Your views should use helper methods and partials when appropriate.
+- >   Your views should use helper methods and partials when appropriate.
 
-- > [x]  Follow patterns in the Rails Style Guide (Links to an external site.) and the Ruby Style Guide (Links   to an external site.).
+- >   Follow patterns in the Rails Style Guide (Links to an external site.) and the Ruby Style Guide (Links   to an external site.).
 
 - [x]  Do not use scaffolding to build your project. Your goal here is to learn. Scaffold is a way to get up   and running quickly, but learning a lot is not one of the benefits of scaffolding.
