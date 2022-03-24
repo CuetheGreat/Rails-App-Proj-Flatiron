@@ -100,6 +100,10 @@ GEM
       reline (>= 0.2.7)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     faraday (1.9.3)
       faraday-em_http (~> 1.0)
@@ -303,8 +307,10 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dotenv-rails
   importmap-rails
   jbuilder
+  omniauth
   omniauth-github!
   omniauth-twitter
   pry
