@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
         u.username = auth['info']['email']
         u.password = 'defaultPassword'
       end
-    binding.pry
     session[:user_id] = @user.id
     redirect_to user_path(@user), notice: 'You have successfully signed in.'
   end

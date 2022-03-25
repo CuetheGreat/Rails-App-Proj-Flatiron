@@ -81,3 +81,4 @@ gem 'rack-cors'
 
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-github', '~> 2.0'
+gem 'rails_same_site_cookie'
