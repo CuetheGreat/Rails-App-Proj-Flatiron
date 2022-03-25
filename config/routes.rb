@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'welcome#home'
 
-  post '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/google_oauth2/callback', to: 'sessions#google_auth'
 end
